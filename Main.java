@@ -17,8 +17,7 @@ public class Main {
             if ("end".equals(inputOperation)) {
                 break;
             }
-            int operation = 0;
-            operation = Integer.parseInt(inputOperation);
+            int operation = Integer.parseInt(inputOperation);
             switch (operation) {
                 case 1:
                     earnings = addEarnings(earnings, scan);
@@ -29,49 +28,52 @@ public class Main {
                     Thread.sleep(300);
                     break;
                 case 3:
-                    int usnEarnings = taxEarnings(earnings);
-                    int usnEarningsMinusSpendings = taxEarningsMinusSpendings(earnings, spendings);
-                    if (usnEarnings < usnEarningsMinusSpendings) {
-                        System.out.println(
-                                "\nМы советуем вам УСН доходы \n" +
-                                        "Ваш налог составит: " + usnEarnings + " рублей \n" +
-                                        "Налог на другой системе: " + usnEarningsMinusSpendings + " рублей \n" +
-                                        "Экономия: " + (usnEarningsMinusSpendings - usnEarnings) + " рублей \n");
-                    } else if (usnEarnings > usnEarningsMinusSpendings) {
-                        System.out.println(
-                                "\nМы советуем вам УСН доходы минус рассходы \n" +
-                                        "Ваш налог составит: " + usnEarningsMinusSpendings + " рублей \n" +
-                                        "Налог на другой системе: " + usnEarnings + " рублей \n" +
-                                        "Экономия: " + (usnEarnings - usnEarningsMinusSpendings) + " рублей\n");
-                    } else {
-                        System.out.println(
-                                "\nМожете выбрать любую систему налогообложения\n");
-                    }
+                    taxCalculation(earnings, spendings, scan);
                     Thread.sleep(300);
                     break;
                 default:
                     exceptionPrint();
                     break;
             }
-            Thread.sleep(300);
         }
         System.out.println("\n Программа завершена!\n");
     }
 
+    public static void taxCalculation(double earnings, double spendings, Scanner scan) throws Exception {
+        int usnEarnings = taxEarnings(earnings);
+        int usnEarningsMinusSpendings = taxEarningsMinusSpendings(earnings, spendings);
+        Thread.sleep(300);
+        if (usnEarnings < usnEarningsMinusSpendings) {
+            System.out.println(
+                    "\nМы советуем вам УСН доходы \n" +
+                            "Ваш налог составит: " + usnEarnings + " рублей \n" +
+                            "Налог на другой системе: " + usnEarningsMinusSpendings + " рублей \n" +
+                            "Экономия: " + (usnEarningsMinusSpendings - usnEarnings) + " рублей \n");
+        } else if (usnEarnings > usnEarningsMinusSpendings) {
+            System.out.println(
+                    "\nМы советуем вам УСН доходы минус рассходы \n" +
+                            "Ваш налог составит: " + usnEarningsMinusSpendings + " рублей \n" +
+                            "Налог на другой системе: " + usnEarnings + " рублей \n" +
+                            "Экономия: " + (usnEarnings - usnEarningsMinusSpendings) + " рублей\n");
+        } else {
+            System.out.println("\nМожете выбрать любую систему налогообложения\n");
+        }
+    }
+
     public static double addEarnings(double earnings, Scanner scan) throws Exception {
+        Thread.sleep(300);
         System.out.println("\nВведите сумму дохода:");
         String moneyStr = scan.nextLine();
-        double money = 0;
-        money = Double.parseDouble(moneyStr);
+        double money = Double.parseDouble(moneyStr);
         earnings += money;
         return earnings;
     }
 
     public static double addSpendings(double spendings, Scanner scan) throws Exception {
+        Thread.sleep(300);
         System.out.println("\nВведите сумму расходов:");
         String moneyStr = scan.nextLine();
-        double money = 0;
-        money = Double.parseDouble(moneyStr);
+        double money = Double.parseDouble(moneyStr);
         spendings += money;
         return spendings;
     }
@@ -95,7 +97,7 @@ public class Main {
     }
 
     public static void exceptionPrint() throws Exception {
-        System.out.println("\nОшибка: Введены некоректные данные! Пожалуйста попробуйте ещё раз.\n");
         Thread.sleep(300);
+        System.out.println("\nОшибка: Введены некоректные данные! Пожалуйста попробуйте ещё раз.\n");
     }
 }

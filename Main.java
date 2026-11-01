@@ -17,7 +17,7 @@ public class Main {
             if ("end".equals(inputOperation)) {
                 break;
             }
-            int operation = Integer.parseInt(inputOperation);
+            byte operation = Byte.parseByte(inputOperation);
             switch (operation) {
                 case 1:
                     earnings = addEarnings(earnings, scan);
